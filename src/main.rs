@@ -83,7 +83,7 @@ fn part2(rules: &Rules, tests: &Tests) -> u32 {
         let mut revised = fail.clone();
         let test_len = fail.len();
         'outer: loop {
-            for mut i in (1..test_len).rev() {
+            for i in (1..test_len).rev() {
                 let current_page = revised[i].clone();
                 if !keys_list.contains(&current_page) { continue };
                 let prev_pages = Vec::from(&revised[..i]);
@@ -93,7 +93,6 @@ fn part2(rules: &Rules, tests: &Tests) -> u32 {
                         // rule violation
                         revised[i] = page.to_owned();
                         revised[index] = current_page.to_owned();
-                        i = test_len;
                         continue 'outer
                     }
                 }
